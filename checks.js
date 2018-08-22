@@ -74,6 +74,7 @@ function getFlagFunc(points) {
     var url = new URL(urlString);
     var elem = document.getElementsByClassName("assess-q1");
     var result = "";
+    var html = "";
   
     // Add all points per dimension
     // ----------------------------
@@ -112,9 +113,48 @@ function getFlagFunc(points) {
         "</li><br />";
       result += currentDimension.getFlag(currentDimension.points) + "<br />";
       result += currentDimension.getRecommendation(currentDimension.points, "DE");
+
+      html += getHtmlCode(currentDimension.name.DE, currentDimension.points, currentDimension.getRecommendation(currentDimension.points, "DE"));
+
     });
   
-    elem[0].innerHTML = "<ol>" + result + "</ol>";
+    elem[0].innerHTML = "<ol>" + html + "</ol>";
+  }
+
+  function getHtmlCode(dimensionName, points, recommendation) {
+    var htmlCode = '\
+    <div data-element-id="elm_IHTVOXhv5xU_8l3XNuYIYg" data-element-type="iconHeadingText" class="zpelement zpelem-iconheadingtext ">\
+        <div\
+            class="zpicon-container zpicon-align-left " data-icon-color="#27AE60" data-icon-bg-color=""\
+            data-icon-border-color="">\
+            <style>\
+                [data-element-id="elm_IHTVOXhv5xU_8l3XNuYIYg"] .zpicon-common svg {\
+                    fill: #27AE60 !important;\
+                }\
+\
+                [data-element-id="elm_IHTVOXhv5xU_8l3XNuYIYg"] .zpicon-common.zpicon-style-bgfill,\
+                [data-element-id="elm_IHTVOXhv5xU_8l3XNuYIYg"] .zpicon-common.zpicon-style-circle-fill,\
+                [data-element-id="elm_IHTVOXhv5xU_8l3XNuYIYg"] .zpicon-common.zpicon-style-roundcorner-fill {\
+                    background:  !important;\
+                }\
+\
+                [data-element-id="elm_IHTVOXhv5xU_8l3XNuYIYg"] .zpicon-common {\
+                    border-color:  !important;\
+                }\
+            </style>\
+            <span class="zpicon zpicon-common zpicon-size-md zpicon-style-none "><svg\
+                    viewBox="0 0 512 513.5" xmlns="http://www.w3.org/2000/svg"><path d="M256 64c105.85 0 192 86.15 192 192s-86.15 192-192 192S64 361.85 64 256 150.15 64 256 64zm0 32c-88.555 0-160 71.445-160 160s71.445 160 160 160 160-71.445 160-160S344.555 96 256 96zm-72 96c13.255 0 24 10.745 24 24s-10.745 24-24 24-24-10.745-24-24 10.745-24 24-24zm144 0c13.255 0 24 10.745 24 24s-10.745 24-24 24-24-10.745-24-24 10.745-24 24-24zM173 304c16.62 28.683 47.385 48 83 48s66.38-19.317 83-48l27.5 16c-22.133 38.197-63.267 64-110.5 64s-88.367-25.803-110.5-64z"></path></svg></span>\
+                    <h4 class="zpicon-heading " data-editor="true">'+dimensionName+'</h4>\
+            <div class="zpicon-text-container "\
+                data-editor="true">\
+                <div>Sie haben die technologischen Voraussetzungen, um das Potenzial von Coworking\
+                    zu nutzen.</div>\
+            </div>\
+        </div>\
+    </div>\
+    ';
+
+    return htmlCode;
   }
   
   document.addEventListener("DOMContentLoaded", ready);
