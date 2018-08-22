@@ -1,28 +1,32 @@
 // Returns the appropriate flag for the number of points, as defined in the threshold array of the dimension
 function getFlagFunc(points) {
-    var flagCode = 'green';
+    var flagObj = {
+      code: 'green',
+      html: '',
+      color: ''
+    };
     for (var i = 0; i < this.thresholds.length; i++) {
       if (points <= this.thresholds[i].threshold) {
-        flagCode = this.thresholds[i].flag;
+        flagObj.code = this.thresholds[i].flag;
         break;
       }
     }
 
-    var htmlFlag = '';
-    switch (flagCode) {
+    switch (flagObj.code) {
       case 'red':
-        htmlFlag = '\
+        flagObj.html = '\
           <span class="zpicon zpicon-common zpicon-size-md zpicon-style-none ">\
             <svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">\
               <path d="M1333 566q18 20 7 44L800 1767q-13 25-42 25-4 0-14-2-17-5-25.5-19t-4.5-30l197-808-406 101q-4 1-12 1-18 0-31-11-18-15-13-39l201-825q4-14 16-23t28-9h328q19 0 32 12.5t13 29.5q0 8-5 18L891 651l396-98q8-2 12-2 19 0 34 15z">\
               </path>\
             </svg>\
           </span>\
-        ';        
+        ';
+        flagObj.color = '#C0392B';
         break;
 
       case 'yellow':
-        htmlFlag = '\
+        flagObj.html = '\
           <span class="zpicon zpicon-common zpicon-size-md zpicon-style-none ">\
             <svg viewBox="0 0 512 513.5" xmlns="http://www.w3.org/2000/svg">\
               <path d="M256 64c105.85 0 192 86.15 192 192s-86.15 192-192 192S64 361.85 64 256 150.15 64 256 64zm0 32c-88.555 0-160 71.445-160 160s71.445 160 160 160 160-71.445 160-160S344.555 96 256 96zm-72 96c13.255 0 24 10.745 24 24s-10.745 24-24 24-24-10.745-24-24 10.745-24 24-24zm144 0c13.255 0 24 10.745 24 24s-10.745 24-24 24-24-10.745-24-24 10.745-24 24-24zM176 320h160v32H176v-32z">\
@@ -30,10 +34,11 @@ function getFlagFunc(points) {
             </svg>\
           </span>\
         ';        
+        flagObj.color = '#EA7704';
         break;
     
       default:
-        htmlFlag = '\
+        flagObj.html = '\
           <span class="zpicon zpicon-common zpicon-size-md zpicon-style-none ">\
             <svg viewBox="0 0 512 513.5" xmlns="http://www.w3.org/2000/svg">\
               <path d="M256 64c105.85 0 192 86.15 192 192s-86.15 192-192 192S64 361.85 64 256 150.15 64 256 64zm0 32c-88.555 0-160 71.445-160 160s71.445 160 160 160 160-71.445 160-160S344.555 96 256 96zm-72 96c13.255 0 24 10.745 24 24s-10.745 24-24 24-24-10.745-24-24 10.745-24 24-24zm144 0c13.255 0 24 10.745 24 24s-10.745 24-24 24-24-10.745-24-24 10.745-24 24-24zM173 304c16.62 28.683 47.385 48 83 48s66.38-19.317 83-48l27.5 16c-22.133 38.197-63.267 64-110.5 64s-88.367-25.803-110.5-64z">\
@@ -41,9 +46,10 @@ function getFlagFunc(points) {
           </svg>\
         </span>\
         ';
+        flagObj.color = '#27AE60';
         break;
     }
-    return htmlFlag;
+    return flagObj;
   }
   
   // Returns the appropriate recommendation for the number of points, as defined in the threshold array of the dimension
@@ -161,11 +167,11 @@ function getFlagFunc(points) {
     var htmlCode = '\
     <div data-element-id="elm_IHTVOXhv5xU_8l3XNuYIYg" data-element-type="iconHeadingText" class="zpelement zpelem-iconheadingtext ">\
         <div\
-            class="zpicon-container zpicon-align-left " data-icon-color="#27AE60" data-icon-bg-color=""\
+            class="zpicon-container zpicon-align-left " data-icon-color="'+flagObj.color+'" data-icon-bg-color=""\
             data-icon-border-color="">\
             <style>\
                 [data-element-id="elm_IHTVOXhv5xU_8l3XNuYIYg"] .zpicon-common svg {\
-                    fill: #27AE60 !important;\
+                    fill: '+flagObj.color+' !important;\
                 }\
 \
                 [data-element-id="elm_IHTVOXhv5xU_8l3XNuYIYg"] .zpicon-common.zpicon-style-bgfill,\
@@ -178,7 +184,7 @@ function getFlagFunc(points) {
                     border-color:  !important;\
                 }\
             </style>\
-            '+flag+'\
+            '+flag.html+'\
                     <h4 class="zpicon-heading " data-editor="true">'+dimensionName+'</h4>\
             <div class="zpicon-text-container "\
                 data-editor="true">\
