@@ -165,23 +165,13 @@ function getFlagFunc(points) {
 
   function getHtmlCode(dimensionName, flag, recommendation) {
     var htmlCode = '\
-    <div data-element-id="elm_" data-element-type="iconHeadingText" class="zpelement zpelem-iconheadingtext ">\
+    <div data-element-type="iconHeadingText" class="zpelement zpelem-iconheadingtext ">\
         <div\
             class="zpicon-container zpicon-align-left " data-icon-color="'+flag.color+'" data-icon-bg-color=""\
             data-icon-border-color="">\
             <style>\
-                [data-element-id="elm_"] .zpicon-common svg {\
+                .zpicon-common svg {\
                     fill: '+flag.color+' !important;\
-                }\
-\
-                [data-element-id="elm_"] .zpicon-common.zpicon-style-bgfill,\
-                [data-element-id="elm_"] .zpicon-common.zpicon-style-circle-fill,\
-                [data-element-id="elm_"] .zpicon-common.zpicon-style-roundcorner-fill {\
-                    background:  !important;\
-                }\
-\
-                [data-element-id="elm_"] .zpicon-common {\
-                    border-color:  !important;\
                 }\
             </style>\
             '+flag.html+'\
