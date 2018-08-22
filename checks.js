@@ -1,13 +1,49 @@
 // Returns the appropriate flag for the number of points, as defined in the threshold array of the dimension
 function getFlagFunc(points) {
-    var flag = "green";
+    var flagCode = 'green';
     for (var i = 0; i < this.thresholds.length; i++) {
       if (points <= this.thresholds[i].threshold) {
-        flag = this.thresholds[i].flag;
+        flagCode = this.thresholds[i].flag;
         break;
       }
     }
-    return flag;
+
+    var htmlFlag = '';
+    switch (flagCode) {
+      case 'red':
+        htmlFlag = '\
+          <span class="zpicon zpicon-common zpicon-size-md zpicon-style-none ">\
+            <svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">\
+              <path d="M1333 566q18 20 7 44L800 1767q-13 25-42 25-4 0-14-2-17-5-25.5-19t-4.5-30l197-808-406 101q-4 1-12 1-18 0-31-11-18-15-13-39l201-825q4-14 16-23t28-9h328q19 0 32 12.5t13 29.5q0 8-5 18L891 651l396-98q8-2 12-2 19 0 34 15z">\
+              </path>\
+            </svg>\
+          </span>\
+        ';        
+        break;
+
+      case 'yellow':
+        htmlFlag = '\
+          <span class="zpicon zpicon-common zpicon-size-md zpicon-style-none ">\
+            <svg viewBox="0 0 512 513.5" xmlns="http://www.w3.org/2000/svg">\
+              <path d="M256 64c105.85 0 192 86.15 192 192s-86.15 192-192 192S64 361.85 64 256 150.15 64 256 64zm0 32c-88.555 0-160 71.445-160 160s71.445 160 160 160 160-71.445 160-160S344.555 96 256 96zm-72 96c13.255 0 24 10.745 24 24s-10.745 24-24 24-24-10.745-24-24 10.745-24 24-24zm144 0c13.255 0 24 10.745 24 24s-10.745 24-24 24-24-10.745-24-24 10.745-24 24-24zM176 320h160v32H176v-32z">\
+              </path>\
+            </svg>\
+          </span>\
+        ';        
+        break;
+    
+      default:
+        htmlFlag = '\
+          <span class="zpicon zpicon-common zpicon-size-md zpicon-style-none ">\
+            <svg viewBox="0 0 512 513.5" xmlns="http://www.w3.org/2000/svg">\
+              <path d="M256 64c105.85 0 192 86.15 192 192s-86.15 192-192 192S64 361.85 64 256 150.15 64 256 64zm0 32c-88.555 0-160 71.445-160 160s71.445 160 160 160 160-71.445 160-160S344.555 96 256 96zm-72 96c13.255 0 24 10.745 24 24s-10.745 24-24 24-24-10.745-24-24 10.745-24 24-24zm144 0c13.255 0 24 10.745 24 24s-10.745 24-24 24-24-10.745-24-24 10.745-24 24-24zM173 304c16.62 28.683 47.385 48 83 48s66.38-19.317 83-48l27.5 16c-22.133 38.197-63.267 64-110.5 64s-88.367-25.803-110.5-64z">\
+              </path>\
+          </svg>\
+        </span>\
+        ';
+        break;
+    }
+    return htmlFlag;
   }
   
   // Returns the appropriate recommendation for the number of points, as defined in the threshold array of the dimension
@@ -114,14 +150,14 @@ function getFlagFunc(points) {
       result += currentDimension.getFlag(currentDimension.points) + "<br />";
       result += currentDimension.getRecommendation(currentDimension.points, "DE");
 
-      html += getHtmlCode(currentDimension.name.DE, currentDimension.points, currentDimension.getRecommendation(currentDimension.points, "DE"));
+      html += getHtmlCode(currentDimension.name.DE, currentDimension.getFlag(currentDimension.points), currentDimension.getRecommendation(currentDimension.points, "DE"));
 
     });
   
     elem[0].innerHTML = "<ol>" + html + "</ol>";
   }
 
-  function getHtmlCode(dimensionName, points, recommendation) {
+  function getHtmlCode(dimensionName, flag, recommendation) {
     var htmlCode = '\
     <div data-element-id="elm_IHTVOXhv5xU_8l3XNuYIYg" data-element-type="iconHeadingText" class="zpelement zpelem-iconheadingtext ">\
         <div\
@@ -142,13 +178,11 @@ function getFlagFunc(points) {
                     border-color:  !important;\
                 }\
             </style>\
-            <span class="zpicon zpicon-common zpicon-size-md zpicon-style-none "><svg\
-                    viewBox="0 0 512 513.5" xmlns="http://www.w3.org/2000/svg"><path d="M256 64c105.85 0 192 86.15 192 192s-86.15 192-192 192S64 361.85 64 256 150.15 64 256 64zm0 32c-88.555 0-160 71.445-160 160s71.445 160 160 160 160-71.445 160-160S344.555 96 256 96zm-72 96c13.255 0 24 10.745 24 24s-10.745 24-24 24-24-10.745-24-24 10.745-24 24-24zm144 0c13.255 0 24 10.745 24 24s-10.745 24-24 24-24-10.745-24-24 10.745-24 24-24zM173 304c16.62 28.683 47.385 48 83 48s66.38-19.317 83-48l27.5 16c-22.133 38.197-63.267 64-110.5 64s-88.367-25.803-110.5-64z"></path></svg></span>\
+            '+flag+'\
                     <h4 class="zpicon-heading " data-editor="true">'+dimensionName+'</h4>\
             <div class="zpicon-text-container "\
                 data-editor="true">\
-                <div>Sie haben die technologischen Voraussetzungen, um das Potenzial von Coworking\
-                    zu nutzen.</div>\
+                <div>'+recommendation+'</div>\
             </div>\
         </div>\
     </div>\
