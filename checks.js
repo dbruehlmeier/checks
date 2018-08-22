@@ -167,11 +167,11 @@ function getFlagFunc(points) {
     var htmlCode = '\
     <div data-element-id="elm_IHTVOXhv5xU_8l3XNuYIYg" data-element-type="iconHeadingText" class="zpelement zpelem-iconheadingtext ">\
         <div\
-            class="zpicon-container zpicon-align-left " data-icon-color="'+flagObj.color+'" data-icon-bg-color=""\
+            class="zpicon-container zpicon-align-left " data-icon-color="'+flag.color+'" data-icon-bg-color=""\
             data-icon-border-color="">\
             <style>\
                 [data-element-id="elm_IHTVOXhv5xU_8l3XNuYIYg"] .zpicon-common svg {\
-                    fill: '+flagObj.color+' !important;\
+                    fill: '+flag.color+' !important;\
                 }\
 \
                 [data-element-id="elm_IHTVOXhv5xU_8l3XNuYIYg"] .zpicon-common.zpicon-style-bgfill,\
