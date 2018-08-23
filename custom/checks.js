@@ -1,15 +1,36 @@
-// Returns the appropriate flag for the number of points, as defined in the threshold array of the dimension
-function getFlagFunc(points) {
-  var flag = 'green';
+// Returns the appropriate icon for the number of points, as defined in the threshold array of the dimension
+function getIconFunc(points) {
+  var iconObj = {
+    color: '',
+    icon: ''
+  }
 
   for (var i = 0; i < this.thresholds.length; i++) {
     if (points <= this.thresholds[i].threshold) {
-      flag = this.thresholds[i].flag;
+      iconObj.color = this.thresholds[i].flag;
       break;
     }
   }
 
-  return flag;
+  switch (iconObj.color) {
+    case 'red':
+      iconObj.icon = 'ban large red icon';
+      break;
+
+    case 'orange':
+      iconObj.icon = 'exclamation circle large red icon';
+      break;
+
+    case 'orange':
+      iconObj.icon = 'check circle large green icon';
+      break;
+
+    default:
+      iconObj.icon = 'question circle large red icon';
+      break;
+  }
+
+  return iconObj;
 }
 
 // Returns the appropriate recommendation for the number of points, as defined in the threshold array of the dimension
@@ -27,13 +48,13 @@ function getRecommendationFunc(points, language) {
 // Dimensions array. Main source of configuration
 // Generated: https://docs.google.com/spreadsheets/d/1v7dVGAhHRSV1ybshYs411ncf1PKGxtkGgRVRq1MZSqs/edit?usp=sharing
 var dimension = [];
-dimension[1] = { name: { DE: 'Technologie' }, questions: [], points: 0, evaluations: [], thresholds: [], getFlag: getFlagFunc, getRecommendation: getRecommendationFunc };
-dimension[2] = { name: { DE: 'Führung' }, questions: [], points: 0, evaluations: [], thresholds: [], getFlag: getFlagFunc, getRecommendation: getRecommendationFunc };
-dimension[3] = { name: { DE: 'Prozesse und Weisungen' }, questions: [], points: 0, evaluations: [], thresholds: [], getFlag: getFlagFunc, getRecommendation: getRecommendationFunc };
-dimension[4] = { name: { DE: 'Kommunikation' }, questions: [], points: 0, evaluations: [], thresholds: [], getFlag: getFlagFunc, getRecommendation: getRecommendationFunc };
-dimension[5] = { name: { DE: 'Kunden' }, questions: [], points: 0, evaluations: [], thresholds: [], getFlag: getFlagFunc, getRecommendation: getRecommendationFunc };
-dimension[6] = { name: { DE: 'Kultur' }, questions: [], points: 0, evaluations: [], thresholds: [], getFlag: getFlagFunc, getRecommendation: getRecommendationFunc };
-dimension[7] = { name: { DE: 'Strategie und Markt' }, questions: [], points: 0, evaluations: [], thresholds: [], getFlag: getFlagFunc, getRecommendation: getRecommendationFunc };
+dimension[1] = { name: { DE: 'Technologie' }, questions: [], points: 0, evaluations: [], thresholds: [], getIcon: getIconFunc, getRecommendation: getRecommendationFunc };
+dimension[2] = { name: { DE: 'Führung' }, questions: [], points: 0, evaluations: [], thresholds: [], getIcon: getIconFunc, getRecommendation: getRecommendationFunc };
+dimension[3] = { name: { DE: 'Prozesse und Weisungen' }, questions: [], points: 0, evaluations: [], thresholds: [], getIcon: getIconFunc, getRecommendation: getRecommendationFunc };
+dimension[4] = { name: { DE: 'Kommunikation' }, questions: [], points: 0, evaluations: [], thresholds: [], getIcon: getIconFunc, getRecommendation: getRecommendationFunc };
+dimension[5] = { name: { DE: 'Kunden' }, questions: [], points: 0, evaluations: [], thresholds: [], getIcon: getIconFunc, getRecommendation: getRecommendationFunc };
+dimension[6] = { name: { DE: 'Kultur' }, questions: [], points: 0, evaluations: [], thresholds: [], getIcon: getIconFunc, getRecommendation: getRecommendationFunc };
+dimension[7] = { name: { DE: 'Strategie und Markt' }, questions: [], points: 0, evaluations: [], thresholds: [], getIcon: getIconFunc, getRecommendation: getRecommendationFunc };
 
 dimension[1].questions.push('q1');
 dimension[1].questions.push('q2');
@@ -49,25 +70,25 @@ dimension[6].questions.push('q11');
 dimension[6].questions.push('q12');
 dimension[7].questions.push('q13');
 
-dimension[1].thresholds.push({threshold: 29, flag: 'red', text: {DE: 'Der Zugriff auf arbeitsrelevante Daten ist eine Grundvoraussetzung, damit Coworking funktioniert'}});
-dimension[1].thresholds.push({threshold: 75, flag: 'orange', text: {DE: 'Ihre technologischen Grundlagen sind vorhanden, damit Coworking funktionieren kann. Achten Sie auf die Datensicherheit und auf einen möglichst einfachen Austausch untereinander.'}});
-dimension[1].thresholds.push({threshold: 100, flag: 'green', text: {DE: 'Sie haben die technologischen Voraussetzungen, um das Potenzial von Coworking zu nutzen.'}});
-dimension[2].thresholds.push({threshold: 49, flag: 'red', text: {DE: 'Coworking ist ein neues Element für Ihre Führungskräfte.'}});
-dimension[2].thresholds.push({threshold: 74, flag: 'orange', text: {DE: 'Vertrauen Sie in Ihre Führungskräfte und lassen Sie sie mit Coworking ein Experiment starten und erste Erfahrungen sammeln.'}});
-dimension[2].thresholds.push({threshold: 100, flag: 'green', text: {DE: 'Ihre Führungskräfte sind fit, legen Sie los.'}});
-dimension[3].thresholds.push({threshold: 49, flag: 'red', text: {DE: 'Prüfen Sie, welche Haltung zu ortsunabhängiger Arbeit die Geschäftsleitung vertritt und ob die Möglichkeiten besteht, liberalere und selbstbestimmtere Regeln zu formulieren. Allenfalls gestalten Sie dazu ein passendes Experiment.'}});
-dimension[3].thresholds.push({threshold: 74, flag: 'orange', text: {DE: 'Analysieren Sie, welche Weisungen allenfalls angepasst werden müssen und starten Sie ein Experiment.'}});
-dimension[3].thresholds.push({threshold: 100, flag: 'green', text: {DE: 'Sie können loslegen.'}});
-dimension[4].thresholds.push({threshold: 74, flag: 'orange', text: {DE: 'Ihre Kommunikation ist geprägt von direktem physischen Kontakt. Überlegen Sie sich, welche Auswirkungen die Arbeit in einem Coworking für die Mitarbeitenden wie auch für die Teams haben.'}});
-dimension[4].thresholds.push({threshold: 100, flag: 'green', text: {DE: 'Ihre Kommunikationsprozesse erlauben ortsunabhängige Arbeit. Legen Sie los und schauen Sie sich unsere Abos an….'}});
-dimension[5].thresholds.push({threshold: 49, flag: 'red', text: {DE: 'Die Auswirkungen auf Kunden sind gut zu prüfen, bevor Sie Coworking ausprobieren.'}});
-dimension[5].thresholds.push({threshold: 74, flag: 'orange', text: {DE: 'Schätzen Sie ab, welche Auswirkungen Coworking auf Ihre Kunden hat und kommunizieren Sie wo notwendig proaktiv.'}});
-dimension[5].thresholds.push({threshold: 100, flag: 'green', text: {DE: 'Die Auswirkungen auf die Kunden sind absehbar, Sie können loslegen!'}});
-dimension[6].thresholds.push({threshold: 49, flag: 'red', text: {DE: 'Coworking und Kollaboration ist in Ihrer Unternehmung noch wenig breit verankert. Welche Schritte sind notwendig, um das Kontrollbedürfnis ausreichend sicherzustellen und um feste Strukturen aufzubrechen? Welche Elemente müssen bei ergebnisoffenen Experimenten zwingend geplant werden? Denken Sie daran „Culture eats strategy for breakfast“ - thematisieren Sie Ihre Kulturwerte.'}});
-dimension[6].thresholds.push({threshold: 74, flag: 'orange', text: {DE: 'Sie haben bereits erste Erfahrungen gemacht und bei Ihnen ist eine gewisse Aufbruchstimmung spürbar, fahren Sie damit weiter mit konkreten umsetzbaren Schritten. Coworking kann ein Element der Kulturveränderung sein.'}});
-dimension[6].thresholds.push({threshold: 100, flag: 'green', text: {DE: 'Herzliche Gratulation, Ihre Unternehmung schöpft bereits viel Potenzial aus, das eine vertrauensvolle Arbeit mit sich bringt. Fahren Sie damit weiter, wir freuen uns, Sie bald bei VillageOffice begrüssen zu dürfen.'}});
-dimension[7].thresholds.push({threshold: 59, flag: 'orange', text: {DE: 'Trotz dieser absehbaren Entwicklung interessieren Sie sich für Coworking. Uns interessiert das „Warum“. Wir freuen uns auf einen Austausch.'}});
-dimension[7].thresholds.push({threshold: 100, flag: 'green', text: {DE: 'Mit Coworking nutzen Sie das Potenzial, im Netzwerk und gemeinsam unternehmensübergreifend zu arbeiten und zu lernen.'}});
+dimension[1].thresholds.push({ threshold: 29, flag: 'red', text: { DE: 'Der Zugriff auf arbeitsrelevante Daten ist eine Grundvoraussetzung, damit Coworking funktioniert' } });
+dimension[1].thresholds.push({ threshold: 75, flag: 'orange', text: { DE: 'Ihre technologischen Grundlagen sind vorhanden, damit Coworking funktionieren kann. Achten Sie auf die Datensicherheit und auf einen möglichst einfachen Austausch untereinander.' } });
+dimension[1].thresholds.push({ threshold: 100, flag: 'green', text: { DE: 'Sie haben die technologischen Voraussetzungen, um das Potenzial von Coworking zu nutzen.' } });
+dimension[2].thresholds.push({ threshold: 49, flag: 'red', text: { DE: 'Coworking ist ein neues Element für Ihre Führungskräfte.' } });
+dimension[2].thresholds.push({ threshold: 74, flag: 'orange', text: { DE: 'Vertrauen Sie in Ihre Führungskräfte und lassen Sie sie mit Coworking ein Experiment starten und erste Erfahrungen sammeln.' } });
+dimension[2].thresholds.push({ threshold: 100, flag: 'green', text: { DE: 'Ihre Führungskräfte sind fit, legen Sie los.' } });
+dimension[3].thresholds.push({ threshold: 49, flag: 'red', text: { DE: 'Prüfen Sie, welche Haltung zu ortsunabhängiger Arbeit die Geschäftsleitung vertritt und ob die Möglichkeiten besteht, liberalere und selbstbestimmtere Regeln zu formulieren. Allenfalls gestalten Sie dazu ein passendes Experiment.' } });
+dimension[3].thresholds.push({ threshold: 74, flag: 'orange', text: { DE: 'Analysieren Sie, welche Weisungen allenfalls angepasst werden müssen und starten Sie ein Experiment.' } });
+dimension[3].thresholds.push({ threshold: 100, flag: 'green', text: { DE: 'Sie können loslegen.' } });
+dimension[4].thresholds.push({ threshold: 74, flag: 'orange', text: { DE: 'Ihre Kommunikation ist geprägt von direktem physischen Kontakt. Überlegen Sie sich, welche Auswirkungen die Arbeit in einem Coworking für die Mitarbeitenden wie auch für die Teams haben.' } });
+dimension[4].thresholds.push({ threshold: 100, flag: 'green', text: { DE: 'Ihre Kommunikationsprozesse erlauben ortsunabhängige Arbeit. Legen Sie los und schauen Sie sich unsere Abos an….' } });
+dimension[5].thresholds.push({ threshold: 49, flag: 'red', text: { DE: 'Die Auswirkungen auf Kunden sind gut zu prüfen, bevor Sie Coworking ausprobieren.' } });
+dimension[5].thresholds.push({ threshold: 74, flag: 'orange', text: { DE: 'Schätzen Sie ab, welche Auswirkungen Coworking auf Ihre Kunden hat und kommunizieren Sie wo notwendig proaktiv.' } });
+dimension[5].thresholds.push({ threshold: 100, flag: 'green', text: { DE: 'Die Auswirkungen auf die Kunden sind absehbar, Sie können loslegen!' } });
+dimension[6].thresholds.push({ threshold: 49, flag: 'red', text: { DE: 'Coworking und Kollaboration ist in Ihrer Unternehmung noch wenig breit verankert. Welche Schritte sind notwendig, um das Kontrollbedürfnis ausreichend sicherzustellen und um feste Strukturen aufzubrechen? Welche Elemente müssen bei ergebnisoffenen Experimenten zwingend geplant werden? Denken Sie daran „Culture eats strategy for breakfast“ - thematisieren Sie Ihre Kulturwerte.' } });
+dimension[6].thresholds.push({ threshold: 74, flag: 'orange', text: { DE: 'Sie haben bereits erste Erfahrungen gemacht und bei Ihnen ist eine gewisse Aufbruchstimmung spürbar, fahren Sie damit weiter mit konkreten umsetzbaren Schritten. Coworking kann ein Element der Kulturveränderung sein.' } });
+dimension[6].thresholds.push({ threshold: 100, flag: 'green', text: { DE: 'Herzliche Gratulation, Ihre Unternehmung schöpft bereits viel Potenzial aus, das eine vertrauensvolle Arbeit mit sich bringt. Fahren Sie damit weiter, wir freuen uns, Sie bald bei VillageOffice begrüssen zu dürfen.' } });
+dimension[7].thresholds.push({ threshold: 59, flag: 'orange', text: { DE: 'Trotz dieser absehbaren Entwicklung interessieren Sie sich für Coworking. Uns interessiert das „Warum“. Wir freuen uns auf einen Austausch.' } });
+dimension[7].thresholds.push({ threshold: 100, flag: 'green', text: { DE: 'Mit Coworking nutzen Sie das Potenzial, im Netzwerk und gemeinsam unternehmensübergreifend zu arbeiten und zu lernen.' } });
 
 // This function is called as soon as the DOM is ready. It will get the GET-parameters from the URL and display the content
 function ready() {
@@ -105,16 +126,16 @@ function ready() {
       currentDimension.points = 0;
     }
 
-    html += getHtmlCode(currentDimension.name.DE, currentDimension.getFlag(currentDimension.points), currentDimension.points, currentDimension.getRecommendation(currentDimension.points, "DE"));
+    html += getHtmlCode(currentDimension.name.DE, currentDimension.getIcon(currentDimension.points), currentDimension.points, currentDimension.getRecommendation(currentDimension.points, "DE"));
 
   });
 
   elem.innerHTML = html;
 }
 
-function getHtmlCode(dimensionName, color, points, recommendation) {
+function getHtmlCode(dimensionName, icon, points, recommendation) {
   var htmlCode = '\
-    <div class="ui raised '+ color + ' fluid card">\
+    <div class="ui raised '+ icon.color + ' fluid card">\
     <div class="content">\
         <div class="header">'+ dimensionName + '</div>\
         <div class="description">\
@@ -123,7 +144,7 @@ function getHtmlCode(dimensionName, color, points, recommendation) {
     </div>\
     <div class="extra content">\
         <div class="right floated">\
-            <i class="check circle large '+ color + ' icon"></i>\
+            <i class="'+ icon.icon + '"></i>\
             '+ points + ' Punkte\
         </div>\
     </div>\
