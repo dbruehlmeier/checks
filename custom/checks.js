@@ -18,15 +18,15 @@ function getIconFunc(points) {
       break;
 
     case 'orange':
-      iconObj.icon = 'exclamation circle large red icon';
+      iconObj.icon = 'exclamation circle large orange icon';
       break;
 
-    case 'orange':
+    case 'green':
       iconObj.icon = 'check circle large green icon';
       break;
 
     default:
-      iconObj.icon = 'question circle large red icon';
+      iconObj.icon = 'question circle large grey icon';
       break;
   }
 
