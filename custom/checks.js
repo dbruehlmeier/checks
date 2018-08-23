@@ -73,7 +73,7 @@ dimension[7].thresholds.push({threshold: 100, flag: 'green', text: {DE: 'Mit Cow
 function ready() {
   var urlString = window.location.href;
   var url = new URL(urlString);
-  var elem = document.document.getElementById("cards");;
+  var elem = document.getElementById("cards");;
   var result = "";
   var html = "";
 
