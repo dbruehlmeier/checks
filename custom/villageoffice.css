@@ -10,8 +10,8 @@
             margin-top: 10em;
         }
 
-        .footer.segment {
-            margin-top: 10em;
+        .ui.vertical.segment {
+            margin-top: 5em;
         }
 
         .fixed.inverted.menu {
