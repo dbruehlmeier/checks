@@ -19,3 +19,16 @@
             border: 1px solid #DDD;
             box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.2);
         }
+
+        i.check {
+            margin-bottom: 0.5em;
+        }
+
+        p.lead {
+            margin-bottom: 3em;
+        }
+
+        .ui.horizontal.divider.header {
+            text-transform: none;
+            margin-bottom: 2em;            
+        }
