@@ -92,7 +92,7 @@ dimension[7].thresholds.push({threshold: 100, flag: 'green', text: {DE: 'Mit Cow
 
 var summary = [];
 summary.push({threshold: 29, flag: 'ban huge red icon', text: {DE: 'Wichtige Voraussetzungen sind noch nicht gegeben. Ein erster Schritt ist getan. Sie interessieren sich für Coworking. Ihr nächster Schritt: Kontaktieren Sie einen unserer unabhängigen Change-Partner.'}});
-summary.push({threshold: 50, flag: 'exclamation circle huge orange icon', text: {DE: 'Es hat mehr als ein Fragezeichen, und doch sind sie neugierig. Vertiefen Sie die Analyse, bevor sie starten mit einem Assessment ihrer Möglichkeiten im Bereich Veränderung.'}});
+summary.push({threshold: 50, flag: 'exclamation circle huge orange icon', text: {DE: 'Es sind erst wenige Voraussetzungen gegeben, um mit Coworking zu starten, und doch sind sie neugierig. Vertiefen Sie die Analyse, zum Beispiel mit einem Assessment zur Veränderungsfitness in Ihrem Unternehmen oder einem persönlichen Beratungsgespräch. Unsere Change-Partner unterstützen Sie dabei.'}, text: {DE: 'Es sind erst wenige Voraussetzungen gegeben, um mit Coworking zu starten, und doch sind sie neugierig. Vertiefen Sie die Analyse, zum Beispiel mit einem Assessment zur Veränderungsfitness in Ihrem Unternehmen oder einem persönlichen Beratungsgespräch. Unsere Change-Partner unterstützen Sie dabei.'}});
 summary.push({threshold: 75, flag: 'exclamation circle huge orange icon', text: {DE: 'Hervorragende Ausgangslage, aber noch den einen oder anderen Beobachtungspunkt. Warum nicht ein Experiment wagen und Coworking 3 Monate begleitet ausprobieren?'}});
 summary.push({threshold: 100, flag: 'check circle huge green icon', text: {DE: 'Sie sind parat fürs Coworking! Machen Sie sogleich den nächsten Schritt: Senden Sie den Report zusammen mit den PLZ-Angeben für Wohn- und Arbeitsort ihrer Belegschaft, die nicht fix an einer Maschine arbeiten, an VillageOffice. Sie erhalten danach eine animierte Auswertung und konkrete Empfehlung.'}});
 
@@ -150,7 +150,7 @@ function ready() {
     }
   }
 
-  lead.innerHTML = '<i class="'+summaryFlag+'"></i><p class="lead">'+averagePoints+' Punkte: '+summaryText+'</p>';
+  lead.innerHTML = '<i class="'+summaryFlag+'"></i><p class="lead">'+averagePoints+' Punkte: '+summaryText+'</p><div class="cta"><a href="http://www.villageoffice.ch/kontakt/remo-rusca/"><button class="big primary ui button">Kontakt aufnehmen</button></a></div>';
 }
 
 function getRecommendationHtml(dimensionName, icon, points, recommendation) {
